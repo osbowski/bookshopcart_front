@@ -28,7 +28,6 @@ const BookListElement: React.FC<BookListElementProps> = ({ bookData }) => {
         <p>Price: {price/100} {currency}</p>
         <button onClick={onAddBook}>Dodaj do koszyka</button>
         <button onClick={onRemoveBook}>Usuń z koszyka</button>
-        <button>Przejdź do koszyka</button>
       </div>
     </li>
   );

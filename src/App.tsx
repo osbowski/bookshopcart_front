@@ -4,12 +4,13 @@ import { Route, Routes } from 'react-router-dom';
 import Homepage from "./views/Homepage";
 import Cart from "./views/Cart";
 import Order from "./views/Order";
+import TheHeader from "./components/UI/TheHeader";
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
-
+        <TheHeader />
         <Routes>
           <Route path='/' element={<Homepage />}/>
           <Route path='/cart' element={<Cart />} />
