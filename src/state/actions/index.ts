@@ -8,7 +8,7 @@ export interface AddBookAction{
 
 export interface RemoveBookAction{
     type:ActionType.REMOVE_BOOK
-    payload:string
+    payload:number
 }
 
 export type Action = AddBookAction | RemoveBookAction;
