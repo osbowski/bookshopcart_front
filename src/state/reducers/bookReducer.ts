@@ -12,9 +12,12 @@ const booksReducer = (state:BooksState=initialState,action:Action)=>{
     switch(action.type){
         case ActionType.ADD_BOOK:
             state.books.push(action.payload)
+            console.log('Books added', state)
             return state;
         case ActionType.REMOVE_BOOK:
-            return state.books.filter(book=>book.id !== action.payload)
+            state.books = state.books.filter(book=>book.id !== action.payload)
+            console.log(state)
+            return state
             
         
         default:
