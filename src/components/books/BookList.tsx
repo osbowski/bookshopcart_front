@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Book } from "../../../types";
 import DataService from "../../service/DataService";
+import BookListElement from "./BookListElment";
 const BookList = ()=>{
     const [books,setBooks] = useState<Book[]>([]);
     useEffect(()=>{
@@ -16,7 +17,7 @@ const BookList = ()=>{
         <ul>
             {books.map((book:Book)=>{
                 return(
-                    <li key={book.id}>{book.title}</li>
+                    <BookListElement key={book.id} bookData={book}/>
                 )
             })}
         </ul>
