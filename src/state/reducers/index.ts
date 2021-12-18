@@ -5,4 +5,5 @@ const reducers = combineReducers({
     books:booksReducer
 })
 
+export type RootState = ReturnType<typeof reducers>
 export default reducers;

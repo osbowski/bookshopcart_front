@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/reducers";
 const TheHeader: React.FC = () => {
+  const state = useSelector((state:RootState)=>state.books)
   return (
     <header>
       <div>BookShop</div>
@@ -13,6 +16,7 @@ const TheHeader: React.FC = () => {
           </li>
         </ul>
       </nav>
+      <div>Books in cart: {state.books.length}</div>
     </header>
   );
 };

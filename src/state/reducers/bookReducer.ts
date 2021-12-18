@@ -1,3 +1,4 @@
+import { Reducer } from "redux";
 import { Book } from "../../../types";
 import { ActionType } from "../action-types";
 import { Action } from '../actions';
@@ -8,17 +9,18 @@ interface BooksState{
 const initialState={
     books:[]
 }
-const booksReducer = (state:BooksState=initialState,action:Action)=>{
+const booksReducer:Reducer<BooksState,Action> = (state:BooksState=initialState,action:Action):BooksState=>{
     switch(action.type){
         case ActionType.ADD_BOOK:
-            state.books.push(action.payload)
-            console.log('Books added', state)
-            return state;
+            return{
+                ...state,
+                books:[...state.books, action.payload]
+            }
         case ActionType.REMOVE_BOOK:
-            state.books = state.books.filter(book=>book.id !== action.payload)
-            console.log(state)
-            return state
-            
+            return {
+                ...state,
+                books:state.books.filter(book=>book.id !== action.payload)
+            }
         
         default:
             return state
