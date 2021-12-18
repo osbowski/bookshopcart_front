@@ -1,12 +1,13 @@
-import { Book } from "../../types";
+import { Book } from "../../../types";
+import { ActionType } from '../action-types/index';
 
 export interface AddBookAction{
-    type:'ADD_BOOK',
+    type: ActionType.ADD_BOOK
     payload:Book
 }
 
 export interface RemoveBookAction{
-    type:'REMOVE_BOOK',
+    type:ActionType.REMOVE_BOOK
     payload:string
 }
 

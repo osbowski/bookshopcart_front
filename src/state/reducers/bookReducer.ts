@@ -1,5 +1,5 @@
 import { Book } from "../../../types";
-import { Action } from '../types';
+import { Action } from '../actions';
 
 const initialState:Book[]=[]
 const booksReducer = (state:Book[]=initialState,action:Action)=>{
