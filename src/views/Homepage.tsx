@@ -1,5 +1,9 @@
+import BookList from "../components/books/BookList";
+
 const Homepage = () => {
-  return <div>This is homepage</div>;
+  return (
+    <BookList />
+  )
 };
 
 export default Homepage;
