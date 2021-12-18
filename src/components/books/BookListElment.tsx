@@ -4,11 +4,10 @@ import { ActionType } from "../../state/action-types";
 
 interface BookListElementProps {
   bookData: Book;
+  isInCart:boolean;
 }
 
-
-
-const BookListElement: React.FC<BookListElementProps> = ({ bookData }) => {
+const BookListElement: React.FC<BookListElementProps> = ({ bookData, isInCart }) => {
   const { title, author, cover_url, pages, price, currency } = bookData;
   const dispatch = useDispatch();
   const onAddBook = ()=>{
@@ -27,7 +26,8 @@ const BookListElement: React.FC<BookListElementProps> = ({ bookData }) => {
         <p>Pages: {pages}</p>
         <p>Price: {price/100} {currency}</p>
         <button onClick={onAddBook}>Dodaj do koszyka</button>
-        <button onClick={onRemoveBook}>Usuń z koszyka</button>
+        {isInCart && <button onClick={onRemoveBook}>Usuń z koszyka</button> }
+        
       </div>
     </li>
   );

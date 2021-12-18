@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { Book } from "../../../types";
 import DataService from "../../service/DataService";
 import BookListElement from "./BookListElment";
-const BookList = ()=>{
+
+interface BookListProps{
+    isInCart:boolean;
+}
+const BookList:React.FC<BookListProps> = ({isInCart})=>{
     const [books,setBooks] = useState<Book[]>([]);
     useEffect(()=>{
         const getBooks = async ()=>{
@@ -17,7 +21,7 @@ const BookList = ()=>{
         <ul>
             {books.map((book:Book)=>{
                 return(
-                    <BookListElement key={book.id} bookData={book}/>
+                    <BookListElement key={book.id} bookData={book} isInCart={isInCart}/>
                 )
             })}
         </ul>
