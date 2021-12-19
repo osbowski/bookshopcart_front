@@ -3,6 +3,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../state/reducers";
 const TheHeader: React.FC = () => {
   const state = useSelector((state:RootState)=>state.books)
+  let numOfBooks = 0 
+  state.books.map(book=>{
+    numOfBooks+=book.quantity!
+  })
   return (
     <header>
       <div>BookShop</div>
@@ -16,7 +20,7 @@ const TheHeader: React.FC = () => {
           </li>
         </ul>
       </nav>
-      <div>Books in cart: {state.books.length}</div>
+      <div>Books in cart: {numOfBooks}</div>
     </header>
   );
 };
