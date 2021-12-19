@@ -1,4 +1,3 @@
-import { stat } from "fs";
 import { Reducer } from "redux";
 import { Book } from "../../../types";
 import { ActionType } from "../action-types";
@@ -41,7 +40,6 @@ const booksReducer: Reducer<BooksState, Action> = (
         newState.books[indexOfBookToRemoveInStore].quantity!--;
         return newState;
       } else {
-          console.log('Book removed', state.books[indexOfBookToRemoveInStore])
         return {
           ...state,
           books: state.books.filter((book) => book.id !== action.payload),
