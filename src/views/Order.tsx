@@ -1,6 +1,6 @@
-// import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSelector } from "react-redux";
+import DataService from "../service/DataService";
 import { RootState } from "../state/reducers";
 import { IOrder } from '../../types';
 
@@ -21,7 +21,7 @@ const Order = () => {
 
 
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const orderData:IOrder = {
         order:[],
         ...data
@@ -33,8 +33,7 @@ const Order = () => {
         }
         orderData.order.push(orderBookData)
     })
-
-    console.log(orderData)
+    DataService.order(JSON.stringify(orderData))
   };
 
   return (
@@ -57,7 +56,7 @@ const Order = () => {
             id="last_name"
             {...register("last_name", { required: true })}
           />
-          {errors.first_name && "Musisz podać nazwisko"}
+          {errors.last_name && "Musisz podać nazwisko"}
         </div>
         <div>
           <label htmlFor="city">Miejścowość</label>
@@ -66,7 +65,7 @@ const Order = () => {
             id="city"
             {...register("city", { required: true })}
           />
-          {errors.first_name && "Musisz podać miasto"}
+          {errors.city && "Musisz podać miasto"}
         </div>
         <div>
           <label htmlFor="zip_code">Kod pocztowy</label>
@@ -75,10 +74,10 @@ const Order = () => {
             id="zip_code"
             {...register("zip_code", {
               required: true,
-              pattern: /[0-9]{2}-[0-9]{3}/,
+              pattern: /\d{2}-\d{3}/,
             })}
           />
-          {errors.first_name && "Musisz podać poprawny kod pocztowy"}
+          {errors.zip_code && "Musisz podać poprawny kod pocztowy"}
         </div>
 
         <input type="submit" value="Zamawiam i płacę" />

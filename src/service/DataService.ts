@@ -4,7 +4,7 @@ import { Book } from '../../types'
 const http = axios.create({
     baseURL:"http://localhost:3001/api",
     headers:{
-        "Content-type":"aplication/json",
+        "Content-type":"application/json",
     }
 });
 
@@ -12,11 +12,11 @@ class DataService{
     getAll(){
         return http.get('/book')
     }
-    getOneById(id:any){
+    getOneById(id:string){
         return http.get<Book>(`/book/${id}`)
     }
-    order(data:any){
-        return http.post(`order`,data)
+    order(data:string){      
+        return http.post('/order',data)
     }
 }
 
