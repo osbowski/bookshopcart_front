@@ -20,3 +20,10 @@ export const removeBookFromCart = (id:number)=>{
         })
     }
 }
+export const removeAllBookFromCart = ()=>{
+    return (dispatch:Dispatch) =>{
+        dispatch({
+            type:ActionType.REMOVE_ALL_BOOK
+        })
+    }
+}

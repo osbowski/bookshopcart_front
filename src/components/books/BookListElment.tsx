@@ -28,7 +28,7 @@ const BookListElement: React.FC<BookListElementProps> = ({
     setAddBookConfirmation("Książka dodana do koszyka");
     setTimeout(() => {
       setAddBookConfirmation(null);
-    }, 3000);
+    }, 1000);
   };
 
   const onRemoveBook = () => {
@@ -38,7 +38,7 @@ const BookListElement: React.FC<BookListElementProps> = ({
 
     setTimeout(() => {
       setRemoveBookConfirmation(null);
-    }, 3000);
+    }, 1000);
   };
   return (
     <Card style={{ width: "35rem", margin: "2rem" }}>

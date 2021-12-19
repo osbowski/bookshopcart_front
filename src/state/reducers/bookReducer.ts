@@ -46,6 +46,12 @@ const booksReducer: Reducer<BooksState, Action> = (
         };
       }
 
+      case ActionType.REMOVE_ALL_BOOK:
+        return{
+          ...state,
+          books:[]
+        }
+
     default:
       return state;
   }

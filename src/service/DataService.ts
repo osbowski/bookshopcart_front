@@ -15,7 +15,7 @@ class DataService{
     getOneById(id:string){
         return http.get<Book>(`/book/${id}`)
     }
-    order(data:string){      
+    order(data:string){  
         return http.post('/order',data)
     }
 }
