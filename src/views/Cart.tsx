@@ -5,7 +5,7 @@ const Cart = ()=>{
         <>
        <div>Twój koszyk</div>
        <BookList isInCart={true} />
-       <Link to="/order">Take Order</Link>
+       <Link to="/order">Zamawiam</Link>
        </>  
     )
 }
