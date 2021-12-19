@@ -21,8 +21,9 @@ const BookList: React.FC<BookListProps> = ({ isInCart }) => {
           const data = await DataService.getAll();
           const fetchedBooks = data.data;
           setBooks(fetchedBooks.data);
-        } catch {
-          setError("Something going wrong, try again later");
+        } catch(error:any) {
+          console.log('Error:', error.message)
+          setError("Coś poszło nie tak, spróbuj później");
         }
       };
       getBooks();

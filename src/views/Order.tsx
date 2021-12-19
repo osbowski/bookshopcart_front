@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSelector } from "react-redux";
 import DataService from "../service/DataService";
 import { RootState } from "../state/reducers";
-import { IOrder } from '../../types';
+import { IOrder } from "../../types";
 
 interface Inputs {
   first_name: string;
@@ -19,21 +20,28 @@ const Order = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-
+  const [error,setError] = useState<string | null>(null)
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const orderData:IOrder = {
-        order:[],
-        ...data
+    setError(null)
+    const orderData: IOrder = {
+      order: [],
+      ...data,
+    };
+    store.books.forEach((book) => {
+      const orderBookData = {
+        id: book.id,
+        quantity: book.quantity!,
+      };
+      orderData.order.push(orderBookData);
+    });
+    try{
+      await DataService.order(JSON.stringify(orderData));
+    }catch(error:any){
+      console.log('Error:',error.message)
+      setError('Wysłanie zamówienia nie powiodło się. Spróbuj później.')
     }
-    store.books.map(book=>{
-        const orderBookData = {
-            id:book.id,
-            quantity:book.quantity!
-        }
-        orderData.order.push(orderBookData)
-    })
-    DataService.order(JSON.stringify(orderData))
+    
   };
 
   return (
@@ -81,6 +89,7 @@ const Order = () => {
         </div>
 
         <input type="submit" value="Zamawiam i płacę" />
+        {error && <p>{error}</p>}
       </form>
     </>
   );
