@@ -16,18 +16,16 @@ const booksReducer: Reducer<BooksState, Action> = (
 ): BooksState => {
   switch (action.type) {
     case ActionType.ADD_BOOK:
-      const indexOfBookInStore = state.books.findIndex(
+      const indexOfBookToAddInStore = state.books.findIndex(
         (book) => book.id === action.payload.id
       );
       const bookToAdd = { ...action.payload, quantity: 1 };
 
-      if (indexOfBookInStore > -1) {
+      if (indexOfBookToAddInStore > -1) {
         const newState = { ...state };
-        newState.books[indexOfBookInStore].quantity! += 1;
-        console.log('Book alredy in cart',newState.books[indexOfBookInStore]);
+        newState.books[indexOfBookToAddInStore].quantity! += 1;
         return newState;
       } else {
-          console.log('Book add first time')
         return {
           ...state,
           books: [...state.books, bookToAdd],
@@ -35,10 +33,21 @@ const booksReducer: Reducer<BooksState, Action> = (
       }
 
     case ActionType.REMOVE_BOOK:
-      return {
-        ...state,
-        books: state.books.filter((book) => book.id !== action.payload),
-      };
+      const indexOfBookToRemoveInStore = state.books.findIndex(
+        (book) => book.id === action.payload
+      );
+      if (state.books[indexOfBookToRemoveInStore].quantity! > 1) {
+        const newState = { ...state };
+        newState.books[indexOfBookToRemoveInStore].quantity!--;
+        console.log("Book-1", newState.books[indexOfBookToRemoveInStore]);
+        return newState;
+      } else {
+          console.log('Book removed', state.books[indexOfBookToRemoveInStore])
+        return {
+          ...state,
+          books: state.books.filter((book) => book.id !== action.payload),
+        };
+      }
 
     default:
       return state;
