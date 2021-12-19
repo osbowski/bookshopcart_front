@@ -28,6 +28,8 @@ const BookList: React.FC<BookListProps> = ({ isInCart }) => {
       };
       getBooks();
     }
+
+    return ()=>{setError(null)}
   }, [store.books]);
 
   return (

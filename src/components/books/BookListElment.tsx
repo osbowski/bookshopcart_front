@@ -10,6 +10,7 @@ interface BookListElementProps {
 
 const BookListElement: React.FC<BookListElementProps> = ({ bookData, isInCart }) => {
   const [addBookConfirmation, setAddBookConfirmation] = useState<string | null>(null);
+  const [removeBookConfirmation, setRemoveBookConfirmation] = useState<string | null>(null);
   const { title, author, cover_url, pages, price, currency } = bookData;
   const dispatch = useDispatch();
   const onAddBook = ()=>{
@@ -22,6 +23,10 @@ const BookListElement: React.FC<BookListElementProps> = ({ bookData, isInCart })
 
   const onRemoveBook = ()=>{
     dispatch({type:ActionType.REMOVE_BOOK, payload:bookData.id})
+    setRemoveBookConfirmation('Jedna sztuka książki usunięta z koszyka')
+    setTimeout(()=>{
+      setRemoveBookConfirmation(null)
+    },3000)
   }
   return (
     <li>
@@ -35,8 +40,7 @@ const BookListElement: React.FC<BookListElementProps> = ({ bookData, isInCart })
         <button onClick={onAddBook}>{isInCart ? 'Dodaj kolejną sztukę' : 'Dodaj do koszyka'}</button>
         {isInCart && <button onClick={onRemoveBook}>Usuń z koszyka</button> }
         {addBookConfirmation && <p>{addBookConfirmation}</p>}
-        
-        
+        {removeBookConfirmation && <p>{removeBookConfirmation}</p>}
       </div>
     </li>
   );
