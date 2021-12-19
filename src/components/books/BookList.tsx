@@ -37,7 +37,7 @@ const BookList: React.FC<BookListProps> = ({ isInCart }) => {
       {error ? (
         <p>{error}</p>
       ) : (
-        <ul>
+        <div style={{display:'flex',flexDirection:'row', flexWrap:'wrap'}}>
           {books.map((book: Book) => {
             return (
               <BookListElement
@@ -47,7 +47,7 @@ const BookList: React.FC<BookListProps> = ({ isInCart }) => {
               />
             );
           })}
-        </ul>
+        </div>
       )}
     </>
   );
