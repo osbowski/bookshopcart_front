@@ -1,7 +1,8 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/reducers";
+import { IOrder } from '../../types';
 
 interface Inputs {
   first_name: string;
@@ -21,7 +22,19 @@ const Order = () => {
 
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("DANE:", data);
+    const orderData:IOrder = {
+        order:[],
+        ...data
+    }
+    store.books.map(book=>{
+        const orderBookData = {
+            id:book.id,
+            quantity:book.quantity!
+        }
+        orderData.order.push(orderBookData)
+    })
+
+    console.log(orderData)
   };
 
   return (
