@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Book } from "../../../types";
 import { useDispatch } from 'react-redux';
 import { ActionType } from "../../state/action-types";
@@ -8,10 +9,15 @@ interface BookListElementProps {
 }
 
 const BookListElement: React.FC<BookListElementProps> = ({ bookData, isInCart }) => {
+  const [addBookConfirmation, setAddBookConfirmation] = useState<string | null>(null);
   const { title, author, cover_url, pages, price, currency } = bookData;
   const dispatch = useDispatch();
   const onAddBook = ()=>{
     dispatch({type:ActionType.ADD_BOOK, payload:bookData})
+    setAddBookConfirmation('Książka dodana do koszyka')
+    setTimeout(()=>{
+      setAddBookConfirmation(null)
+    },3000)
   }
 
   const onRemoveBook = ()=>{
@@ -28,6 +34,7 @@ const BookListElement: React.FC<BookListElementProps> = ({ bookData, isInCart })
         {isInCart && <p>Quantity: {bookData.quantity}</p> }
         <button onClick={onAddBook}>{isInCart ? 'Dodaj kolejną sztukę' : 'Dodaj do koszyka'}</button>
         {isInCart && <button onClick={onRemoveBook}>Usuń z koszyka</button> }
+        {addBookConfirmation && <p>{addBookConfirmation}</p>}
         
         
       </div>
