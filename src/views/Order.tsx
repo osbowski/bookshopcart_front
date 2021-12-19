@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/reducers";
 
 interface Inputs {
   first_name: string;
@@ -8,14 +11,17 @@ interface Inputs {
 }
 
 const Order = () => {
+  const store = useSelector((state: RootState) => state.books);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
+
+
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-      console.log('DANE:',data)
+    console.log("DANE:", data);
   };
 
   return (
@@ -27,9 +33,9 @@ const Order = () => {
           <input
             type="text"
             id="first_name"
-            {...register("first_name", { required: true})}
+            {...register("first_name", { required: true })}
           />
-          {errors.first_name && 'Musisz podać imię'}
+          {errors.first_name && "Musisz podać imię"}
         </div>
         <div>
           <label htmlFor="last_name">Nazwisko</label>
@@ -38,7 +44,7 @@ const Order = () => {
             id="last_name"
             {...register("last_name", { required: true })}
           />
-          {errors.first_name && 'Musisz podać nazwisko'}
+          {errors.first_name && "Musisz podać nazwisko"}
         </div>
         <div>
           <label htmlFor="city">Miejścowość</label>
@@ -47,19 +53,22 @@ const Order = () => {
             id="city"
             {...register("city", { required: true })}
           />
-          {errors.first_name && 'Musisz podać miasto'}
+          {errors.first_name && "Musisz podać miasto"}
         </div>
         <div>
           <label htmlFor="zip_code">Kod pocztowy</label>
           <input
             type="text"
             id="zip_code"
-            {...register("zip_code", { required: true, pattern:/[0-9]{2}-[0-9]{3}/ })}
+            {...register("zip_code", {
+              required: true,
+              pattern: /[0-9]{2}-[0-9]{3}/,
+            })}
           />
-          {errors.first_name && 'Musisz podać poprawny kod pocztowy'}
+          {errors.first_name && "Musisz podać poprawny kod pocztowy"}
         </div>
 
-        <input type="submit" value='Zamawiam i płacę'/>
+        <input type="submit" value="Zamawiam i płacę" />
       </form>
     </>
   );
