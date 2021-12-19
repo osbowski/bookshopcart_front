@@ -3,6 +3,7 @@ import { Book } from "../../../types";
 import { useDispatch } from "react-redux";
 import { ActionType } from "../../state/action-types";
 import { Button, Card, ListGroup, ButtonGroup, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 interface BookListElementProps {
   bookData: Book;
@@ -40,7 +41,7 @@ const BookListElement: React.FC<BookListElementProps> = ({
     }, 3000);
   };
   return (
-    <Card style={{ width: "20rem", margin: "2rem" }}>
+    <Card style={{ width: "35rem", margin: "2rem" }}>
       <Card.Header as="h5" className="text-center">
         {title}
       </Card.Header>
@@ -51,8 +52,7 @@ const BookListElement: React.FC<BookListElementProps> = ({
       <ListGroup variant="flush">
         <ListGroup.Item>Autor: {author}</ListGroup.Item>
         <ListGroup.Item>Stron: {pages}</ListGroup.Item>
-        <ListGroup.Item>
-          Centa: {price / 100} {currency}
+        <ListGroup.Item>Cena: {(price / 100).toFixed(2)} {currency}
         </ListGroup.Item>
         {isInCart && (
           <ListGroup.Item>Ilość w koszyku: {bookData.quantity}</ListGroup.Item>
@@ -70,6 +70,7 @@ const BookListElement: React.FC<BookListElementProps> = ({
         <Button variant="primary" onClick={onAddBook}>
           {isInCart ? "Dodaj kolejną sztukę" : "Dodaj do koszyka"}
         </Button>
+        {!isInCart && <Button variant="info"><Link to="/cart"> Przejdź do koszyka</Link></Button>}
         {isInCart && (
           <Button variant="danger" onClick={onRemoveBook}>
             Usuń z koszyka

@@ -10,7 +10,7 @@ const TheHeader: React.FC = () => {
     numOfBooks += book.quantity!;
   });
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" fixed="top">
       <Container>
         <Navbar.Brand>
           <Link to="/">BookShop</Link>
