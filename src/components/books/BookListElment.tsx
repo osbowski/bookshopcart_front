@@ -25,8 +25,10 @@ const BookListElement: React.FC<BookListElementProps> = ({ bookData, isInCart })
         <p>Author: {author}</p>
         <p>Pages: {pages}</p>
         <p>Price: {price/100} {currency}</p>
-        <button onClick={onAddBook}>Dodaj do koszyka</button>
+        {isInCart && <p>Quantity: {bookData.quantity}</p> }
+        <button onClick={onAddBook}>{isInCart ? 'Dodaj kolejną sztukę' : 'Dodaj do koszyka'}</button>
         {isInCart && <button onClick={onRemoveBook}>Usuń z koszyka</button> }
+        
         
       </div>
     </li>

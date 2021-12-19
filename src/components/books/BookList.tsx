@@ -23,7 +23,8 @@ const BookList:React.FC<BookListProps> = ({isInCart})=>{
             getBooks()
         }
 
-    },[])
+    },[store.books])
+
     return(
         <>
         <ul>

@@ -39,7 +39,6 @@ const booksReducer: Reducer<BooksState, Action> = (
       if (state.books[indexOfBookToRemoveInStore].quantity! > 1) {
         const newState = { ...state };
         newState.books[indexOfBookToRemoveInStore].quantity!--;
-        console.log("Book-1", newState.books[indexOfBookToRemoveInStore]);
         return newState;
       } else {
           console.log('Book removed', state.books[indexOfBookToRemoveInStore])
