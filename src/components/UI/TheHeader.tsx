@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/reducers";
 const TheHeader: React.FC = () => {
@@ -20,7 +20,7 @@ const TheHeader: React.FC = () => {
           </li>
         </ul>
       </nav>
-      <div>Books in cart: {numOfBooks}</div>
+      <div><Link to="/cart">Books in cart: {numOfBooks}</Link></div>
     </header>
   );
 };
