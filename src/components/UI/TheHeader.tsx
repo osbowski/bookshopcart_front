@@ -1,27 +1,25 @@
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/reducers";
+import {Navbar, Container, Nav} from "react-bootstrap";
+
 const TheHeader: React.FC = () => {
-  const state = useSelector((state:RootState)=>state.books)
-  let numOfBooks = 0 
-  state.books.map(book=>{
-    numOfBooks+=book.quantity!
-  })
+  const state = useSelector((state: RootState) => state.books);
+  let numOfBooks = 0;
+  state.books.forEach((book) => {
+    numOfBooks += book.quantity!;
+  });
   return (
-    <header>
-      <div>BookShop</div>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/">Sklep</NavLink>
-          </li>
-          <li>
-            <NavLink to="/cart">Koszyk</NavLink>
-          </li>
-        </ul>
-      </nav>
-      <div><Link to="/cart">Books in cart: {numOfBooks}</Link></div>
-    </header>
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand>
+          <Link to="/">BookShop</Link>
+        </Navbar.Brand>
+        <Navbar.Text>
+          <Link to="/cart">Książek w koszyku: {numOfBooks}</Link>
+        </Navbar.Text>
+      </Container>
+    </Navbar>
   );
 };
 
