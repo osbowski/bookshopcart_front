@@ -13,7 +13,7 @@ export const addBookToCart = (book: Book) => {
 };
 
 export const removeBookFromCart = (id:number)=>{
-    return (dispatch:Dispatch<Action>) =>{
+    return (dispatch:Dispatch) =>{
         dispatch({
             type:ActionType.REMOVE_BOOK,
             payload:id

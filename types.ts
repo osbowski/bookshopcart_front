@@ -5,5 +5,6 @@ export interface Book{
     cover_url:string,
     pages:number,
     price:number,
-    currency:string
+    currency:string,
+    quantity?:number
 }
