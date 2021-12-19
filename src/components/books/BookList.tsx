@@ -21,15 +21,17 @@ const BookList: React.FC<BookListProps> = ({ isInCart }) => {
           const data = await DataService.getAll();
           const fetchedBooks = data.data;
           setBooks(fetchedBooks.data);
-        } catch(error:any) {
-          console.log('Error:', error.message)
+        } catch (error: any) {
+          console.log("Error:", error.message);
           setError("Coś poszło nie tak, spróbuj później");
         }
       };
       getBooks();
     }
 
-    return ()=>{setError(null)}
+    return () => {
+      setError(null);
+    };
   }, [store.books]);
 
   return (
@@ -37,7 +39,14 @@ const BookList: React.FC<BookListProps> = ({ isInCart }) => {
       {error ? (
         <p>{error}</p>
       ) : (
-        <div style={{display:'flex',flexDirection:'row', flexWrap:'wrap', justifyContent:"center"}}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
           {books.map((book: Book) => {
             return (
               <BookListElement

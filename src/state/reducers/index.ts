@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 import booksReducer from "./bookReducer";
 
 const reducers = combineReducers({
-    books:booksReducer
-})
+  books: booksReducer,
+});
 
-export type RootState = ReturnType<typeof reducers>
+export type RootState = ReturnType<typeof reducers>;
 export default reducers;

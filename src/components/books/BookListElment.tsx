@@ -52,7 +52,8 @@ const BookListElement: React.FC<BookListElementProps> = ({
       <ListGroup variant="flush">
         <ListGroup.Item>Autor: {author}</ListGroup.Item>
         <ListGroup.Item>Stron: {pages}</ListGroup.Item>
-        <ListGroup.Item>Cena: {(price / 100).toFixed(2)} {currency}
+        <ListGroup.Item>
+          Cena: {(price / 100).toFixed(2)} {currency}
         </ListGroup.Item>
         {isInCart && (
           <ListGroup.Item>Ilość w koszyku: {bookData.quantity}</ListGroup.Item>
@@ -70,7 +71,11 @@ const BookListElement: React.FC<BookListElementProps> = ({
         <Button variant="primary" onClick={onAddBook}>
           {isInCart ? "Dodaj kolejną sztukę" : "Dodaj do koszyka"}
         </Button>
-        {!isInCart && <Button variant="info"><Link to="/cart"> Przejdź do koszyka</Link></Button>}
+        {!isInCart && (
+          <Button variant="info">
+            <Link to="/cart"> Przejdź do koszyka</Link>
+          </Button>
+        )}
         {isInCart && (
           <Button variant="danger" onClick={onRemoveBook}>
             Usuń z koszyka

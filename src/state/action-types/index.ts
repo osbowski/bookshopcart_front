@@ -1,5 +1,5 @@
-export enum ActionType{
-    ADD_BOOK='ADD_BOOK',
-    REMOVE_BOOK='REMOVE_BOOK',
-    REMOVE_ALL_BOOK='REMOVE_ALL_BOOK'
+export enum ActionType {
+  ADD_BOOK = "ADD_BOOK",
+  REMOVE_BOOK = "REMOVE_BOOK",
+  REMOVE_ALL_BOOK = "REMOVE_ALL_BOOK",
 }

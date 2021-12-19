@@ -5,7 +5,7 @@ import Homepage from "./views/Homepage";
 import Cart from "./views/Cart";
 import Order from "./views/Order";
 import TheHeader from "./components/UI/TheHeader";
-import './app.css'
+import "./app.css";
 
 function App() {
   return (

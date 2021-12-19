@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import DataService from "../../service/DataService";
-import { RootState } from '../../state/reducers'
-import { IOrder } from '../../../types'
+import { RootState } from "../../state/reducers";
+import { IOrder } from "../../../types";
 import { Form, Alert } from "react-bootstrap";
 import { ActionType } from "../../state/action-types";
 
@@ -23,7 +23,9 @@ const OrderForm = () => {
   } = useForm<Inputs>();
 
   const [error, setError] = useState<string | null>(null);
-  const [ sendFormConfirmation, setSendFormConfirmation ] = useState<string | null>(null)
+  const [sendFormConfirmation, setSendFormConfirmation] = useState<
+    string | null
+  >(null);
   const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -41,11 +43,11 @@ const OrderForm = () => {
     });
     try {
       await DataService.order(JSON.stringify(orderData));
-      setSendFormConfirmation('Zamówienie wysłane')
-      dispatch({type:ActionType.REMOVE_ALL_BOOK})
-      setTimeout(()=>{
-          setSendFormConfirmation(null)
-      },1000)
+      setSendFormConfirmation("Zamówienie wysłane");
+      dispatch({ type: ActionType.REMOVE_ALL_BOOK });
+      setTimeout(() => {
+        setSendFormConfirmation(null);
+      }, 1000);
     } catch (error: any) {
       console.log("Error:", error.message);
       setError("Wysłanie zamówienia nie powiodło się. Spróbuj później.");
@@ -93,12 +95,13 @@ const OrderForm = () => {
         />
         {errors.zip_code && "Musisz podać poprawny kod pocztowy"}
       </Form.Group>
-      <div style={{height:'3.5rem'}}>
-       { sendFormConfirmation && <Alert variant="success">{sendFormConfirmation}</Alert> }
-       {error && <Alert variant="danger">{error}</Alert>}
+      <div style={{ height: "3.5rem" }}>
+        {sendFormConfirmation && (
+          <Alert variant="success">{sendFormConfirmation}</Alert>
+        )}
+        {error && <Alert variant="danger">{error}</Alert>}
       </div>
       <Form.Control type="submit" value="Zamawiam i płacę" />
-      
     </Form>
   );
 };
