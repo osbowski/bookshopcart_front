@@ -13,7 +13,7 @@ const TheHeader: React.FC = () => {
 
   useEffect(() => {}, [store.books]);
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" fixed="top">
       <Container>
         <Navbar.Brand>
           <Link to="/">BookShop</Link>
